@@ -54,9 +54,9 @@ int main(int argc, char *argv[])
     listenerSettings->beginGroup("listener");
     new HttpListener(listenerSettings,new RequestMapper(&app),&app);
 
-   database sdb("facedetection.sqlite");
-   sdb.connect();
-   sdb.createTable();
+    database sdb("facedetection.sqlite");
+    sdb.connect();
+    //sdb.createTable();
 
     return app.exec();
 }

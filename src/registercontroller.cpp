@@ -14,11 +14,11 @@ void RegisterController::service(HttpRequest &request, HttpResponse &response) {
         //if we recieving multipart data - this is our pictures.
         //we need to make folder in a style of "username+email" and place all 3 pics there
         QTemporaryFile* image;
-        QDir().mkdir("E:/files/" + username + email);
+        QDir().mkdir("E:/files/" + username + email + "123");
         //here we need attach dir to db
         for (int i=0; i<3; i++){
-            if ( image = request.getUploadedFile("regphoto" + QByteArray::number(i))){
-            image->copy("E:/files/" + username + email+"/userfile" + QByteArray::number(i) + ".png");
+            if ( image = request.getUploadedFile("regphoto")){
+            image->copy("E:/files/123/" + username + email+"/userfile" + QByteArray::number(i) + ".png");
             image->remove();
             if (i ==2 ){
                 response.write("ok",true);

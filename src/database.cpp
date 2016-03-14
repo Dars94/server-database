@@ -27,8 +27,7 @@ int database::connect()
 int database::add(QString qname, QString qemail, QString qpath)
 {
     QSqlQuery query;
-    query.prepare
-            ("insert into users (name, email, path) values (:qname, :qemail, :qpath);");
+    query.prepare("insert into users (name, email, path) values (:qname, :qemail, :qpath);");
     query.bindValue(":qname", qname);
     query.bindValue(":qemail", qemail);
     query.bindValue(":qpath", qpath);
@@ -80,9 +79,12 @@ QString database::get(QString qemail)
 int database::createTable()
 {
     QSqlQuery query;
-    query.prepare
-            ("create table users(name text not null, email text not null unique, path text not null unique);");
-    bool execute = query.exec();
+
+     bool execute  = query.exec("create table person "
+              "(username varchar(20) primary key, "
+              "email varchar(20), "
+              "path varchar(30))");
+
     if (!execute)
     {
         qDebug() << query.lastError().text();
